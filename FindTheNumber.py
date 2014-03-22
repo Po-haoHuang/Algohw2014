@@ -13,7 +13,9 @@ def readin():
     temp = temp.split()
     total = int(temp[0])
     n = int(temp[1])
-    randomselect(a,0,total-1,n)
+    result = randomselect(a,0,total-1,n)
+    #print a
+    Output(result)
 
 def randomselect(A,p,r,i):
     if p==r:
@@ -27,7 +29,7 @@ def randomselect(A,p,r,i):
     else:
         return randomselect(A,q+1,r,i-k)
 def randompartition(A,p,r):
-    i = random.randint(p,r+1)
+    i = random.randint(p,r)
     temp = A[r]
     A[r] = A[i]
     A[i] = temp
@@ -44,7 +46,7 @@ def partition(A,p,r):
             A[j] = temp
     temp = A[i+1]
     A[i+1] = A[r]
-    A[r] = A[i+1]
+    A[r] = temp
     return i+1
 
 
