@@ -18,10 +18,21 @@ def gen():
     s = ""
     for i in range(0,total_num):
             s = ""
+            if random.randint(0,1) == 0:
+                s+='-'
+            if random.randint(0,9) == 0 and i!=0:
+                s = a[i-1]
+                a.append(float(s))
+                continue
             s += str(random.randint(0,digit_num))
             s += '.'
             s += str(random.randint(0,point_num))
             a.append(float(s))
+    fo = open("input.txt", "w+")
+    fo.write(str(total_num)+" "+str(num_smallest))
+    for i in range(0,total_num):
+        fo.write("\n"+str(a[i]))
+    fo.close()
 #    b=a
     result = randomselect(a,0,total_num-1,num_smallest)
 #    b.sort()
@@ -29,16 +40,6 @@ def gen():
     print ("{0:.15f}vs".format(result))
 
 
-#def readin():
-#    fo = open("test.txt", "r")
-#    temp = fo.readline()
-#    a = fo.readlines()
-#    a = map(float, a)
-#    temp = temp.split()
-#    total = int(temp[0])
-#    n = int(temp[1])
-#    result = randomselect(a,0,total-1,n)
-#    Output(result)
 def randomselect(A,p,r,i):
     if p==r:
         return A[p]

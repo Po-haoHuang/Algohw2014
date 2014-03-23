@@ -6,16 +6,21 @@ Created on Sat Mar 22 12:56:18 2014
 """
 import sys
 import random
+from decimal import Decimal
 sys.setrecursionlimit(2000)
 def readin():
     temp = sys.stdin.readline()
     temp = temp.split()
-    total = int(temp[0])
-    n = int(temp[1])
+    if temp[0]>=temp[1]:
+        total = int(temp[0])
+        n = int(temp[1])
+    else:
+        total = int(temp[1])
+        n = int(temp[0])
     a=[]
     for i in range(0,total):
         a.append(sys.stdin.readline())
-    a = map(float, a)
+    a = map(Decimal, a)
     result = randomselect(a,0,total-1,n)
     Output(result)
 def randomselect(A,p,r,i):
@@ -30,11 +35,11 @@ def randomselect(A,p,r,i):
     else:
         return randomselect(A,q+1,r,i-k)
 def randompartition(A,p,r):
-#    i = random.randint(p,r)
-    while(True):
-        i = random.randint(p,r)
-        if i > ((9*p+r)/10) and i< ((p+9*r)/10):
-            break
+    i = random.randint(p,r)
+#    while(True):
+#        i = random.randint(p,r)
+#        if i > ((9*p+r)/10) and i< ((p+9*r)/10):
+#            break
     temp = A[r]
     A[r] = A[i]
     A[i] = temp
@@ -54,5 +59,4 @@ def partition(A,p,r):
     return i+1
 def Output(result):
     print("{0:.15f}".format(result))
-
 readin()
