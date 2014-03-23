@@ -6,17 +6,18 @@ Created on Sat Mar 22 12:56:18 2014
 """
 import sys
 import random
+sys.setrecursionlimit(2000)
 def readin():
     temp = sys.stdin.readline()
-    a = sys.stdin.readlines()
-    a = map(float, a)
     temp = temp.split()
     total = int(temp[0])
     n = int(temp[1])
+    a=[]
+    for i in range(0,total):
+        a.append(sys.stdin.readline())
+    a = map(float, a)
     result = randomselect(a,0,total-1,n)
-    #print a
     Output(result)
-
 def randomselect(A,p,r,i):
     if p==r:
         return A[p]
@@ -29,12 +30,14 @@ def randomselect(A,p,r,i):
     else:
         return randomselect(A,q+1,r,i-k)
 def randompartition(A,p,r):
-    i = random.randint(p,r)
+    while(True):
+        i = random.randint(p,r)
+        if i<((p+r)/4) or i>((p+r)*3/4):
+            break;
     temp = A[r]
     A[r] = A[i]
     A[i] = temp
     return partition(A,p,r)
-
 def partition(A,p,r):
     x = A[r]
     i = p-1
@@ -48,12 +51,7 @@ def partition(A,p,r):
     A[i+1] = A[r]
     A[r] = temp
     return i+1
-
-
-
 def Output(result):
     print("{0:.15f}".format(result))
-
-
 
 readin()
