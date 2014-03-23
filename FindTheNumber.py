@@ -30,7 +30,11 @@ def randomselect(A,p,r,i):
     else:
         return randomselect(A,q+1,r,i-k)
 def randompartition(A,p,r):
-    i = random.randint(p,r)
+#    i = random.randint(p,r)
+    while(True):
+        i = random.randint(p,r)
+        if i > ((9*p+r)/10) and i< ((p+9*r)/10):
+            break
     temp = A[r]
     A[r] = A[i]
     A[i] = temp

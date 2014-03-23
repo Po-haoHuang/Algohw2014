@@ -22,10 +22,11 @@ def gen():
             s += '.'
             s += str(random.randint(0,point_num))
             a.append(float(s))
-    b=a
+#    b=a
     result = randomselect(a,0,total_num-1,num_smallest)
-    b.sort()
-    print ("{0:.15f}vs{0:.15f}".format(result,b[num_smallest-1]))
+#    b.sort()
+#    print ("{0:.15f}vs{1:.15f}".format(result,b[num_smallest-1]))
+    print ("{0:.15f}vs".format(result))
 
 
 #def readin():
